@@ -38,19 +38,23 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
 @media(max-width:900px){.navin{height:70px}.heroGrid{min-height:auto;padding-top:55px}.heroPhoto{height:360px}.navlinks{top:70px}.section{padding:60px 0}}
 @media(max-width:600px){.heroGrid{padding-top:42px;padding-bottom:48px}.heroPhoto{display:none}.hero h1{font-size:52px;line-height:.95}.lead{font-size:17px}.section{padding:50px 0}.sectionHead h2{font-size:32px}.feature{padding:21px}.photo{height:210px}.cardBody{padding:17px}.heroActions .btn{width:100%}}
 
+
+/* Interactive detail and booking enhancements */
+.card{cursor:pointer}.card:focus-within{outline:3px solid #b8c9bc;outline-offset:2px}.cardOpen{appearance:none;border:0;background:transparent;padding:0;margin:0;width:100%;text-align:left;cursor:pointer}.cardOpen:focus-visible{outline:3px solid #b8c9bc;outline-offset:3px}.detailPanel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:0 9px 30px rgba(31,53,41,.06)}.detailList{display:grid;gap:10px;margin:18px 0}.detailRow{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #edf0ed}.detailRow:last-child{border-bottom:0}.detailRow b{min-width:105px}.bookingBanner{margin:20px 0;padding:22px;border:1px solid #dce8dd;border-radius:20px;background:linear-gradient(120deg,#eef5ef,#fff9ea);display:flex;justify-content:space-between;gap:20px;align-items:center}.bookingActions{display:flex;gap:8px;flex-wrap:wrap}.modalBox.wide{width:min(760px,100%)}.modalBox.wide h2{margin-top:5px}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.formGrid .full{grid-column:1/-1}.muted{color:var(--muted)}
+@media(max-width:700px){.formGrid{grid-template-columns:1fr}.formGrid .full{grid-column:auto}.detailHero{grid-template-columns:1fr}.detailHero .photo{height:300px}.bookingBanner{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
 <noscript><div style="padding:12px 16px;background:#fff3cd;color:#5f4b12;text-align:center">This website needs JavaScript enabled for navigation, trip planning and community features.</div></noscript>
-<nav class="nav"><div class="container navin"><div class="logo">Hassan <span>Discover</span></div><div class="navlinks" id="navlinks"><button data-page="home">Home</button><button data-page="explore">Explore Places</button><button data-page="planner">Trip Planner</button><button data-page="stayfood">Stays • Food • Business</button><button data-page="entertainment">Entertainment</button><button data-page="community">Feedback & Challenge</button></div><button class="menu" id="menu">☰</button></div></nav>
+<nav class="nav"><div class="container navin"><div class="logo">Hassan <span>Discover</span></div><div class="navlinks" id="navlinks"><button data-page="home">Home</button><button data-page="explore">Explore Places</button><button data-page="planner">Trip Planner</button><button data-page="stayfood">Stays & Food</button><button data-page="entertainment">Entertainment</button><button data-page="community">Feedback & Challenge</button></div><button class="menu" id="menu">☰</button></div></nav>
 
 <main>
 <section class="page active" id="home">
-<div class="hero"><div class="container heroGrid"><div><div class="eyebrow">SMART LOCAL TOURISM • HASSAN, KARNATAKA</div><h1>There’s more<br><span>than you think.</span></h1><p class="lead">Discover Hassan beyond the usual tourist stops — heritage, hills, nature, food, stays and local experiences, all in one place.</p><div class="heroActions"><button class="btn primary" onclick="showPage('explore')">🗺️ Explore Places</button><button class="btn" onclick="showPage('stayfood')">🏨 Book a Stay</button><button class="btn" onclick="showPage('planner')">🧳 Plan My Trip</button></div></div><div class="heroPhoto" aria-label="Halebidu Hoysaleshwara Temple"></div></div></div>
+<div class="hero"><div class="container heroGrid"><div><div class="eyebrow">SMART LOCAL TOURISM • HASSAN, KARNATAKA</div><h1>There’s more<br><span>than you think.</span></h1><p class="lead">Discover Hassan beyond the usual tourist stops — heritage, hills, nature, food, stays and local experiences, all in one place.</p><div class="heroActions"><button class="btn primary" onclick="showPage('explore')">🗺️ Explore Places</button><button class="btn" onclick="showPage('planner')">🧳 Plan My Trip</button></div></div><div class="heroPhoto" aria-label="Halebidu Hoysaleshwara Temple"></div></div></div>
 <div class="container" style="padding-top:18px;padding-bottom:18px"><div class="stats" style="margin:0;justify-content:center"><div class="stat" style="background:#ffffffaa;border:1px solid #d9e4da;color:#456052">🏛️ Heritage</div><div class="stat" style="background:#ffffffaa;border:1px solid #d9e4da;color:#456052">🌿 Nature</div><div class="stat" style="background:#ffffffaa;border:1px solid #d9e4da;color:#456052">☕ Local Food</div><div class="stat" style="background:#ffffffaa;border:1px solid #d9e4da;color:#456052">🧭 Easy Planning</div></div></div><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">START HERE</div><h2>Everything you need</h2><p>Choose where you want to go next. The four main sections are kept separate so the website stays simple and useful.</p></div></div><div class="featureGrid">
 <div class="feature" onclick="showPage('explore')"><div class="icon">🗺️</div><h3>Explore Places</h3><p>See Hassan destinations with place-specific photos, details and Google Maps locations.</p></div>
 <div class="feature" onclick="showPage('planner')"><div class="icon">🧳</div><h3>Trip Planner</h3><p>Tell us how many days you have. Get a suggested itinerary and nearby food stops.</p></div>
-<div class="feature" onclick="showPage('stayfood')"><div class="icon">🏨</div><h3>Stays & Food</h3><p>Hotels, resorts, restaurants and cafés — plus room booking requests and a business listing pathway.</p></div>
+<div class="feature" onclick="showPage('stayfood')"><div class="icon">🏨</div><h3>Stays & Food</h3><p>Hotels, resorts, restaurants and cafés — including local options — with Maps and reviews.</p></div>
 <div class="feature" onclick="showPage('entertainment')"><div class="icon">🎮</div><h3>Entertainment</h3><p>Game zones, Arena 13, theatres, shopping and other fun places with location and rating.</p></div>
 </div></div></div>
 </section>
@@ -61,7 +65,7 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
 
 <section class="page" id="planner"><div class="section"><div class="container"><div class="panel plannerIntro"><div class="eyebrow">SMART TRIP PLANNER</div><h2>How many days are you planning?</h2><p class="lead" style="font-size:16px">First choose the number of days. Hassan Discover will suggest the places and nearby food stops. Then you can edit the plan.</p><div class="daysRow"><input class="daysInput" id="days" type="number" min="1" max="10" value="2"><button class="btn primary" id="makePlan">Suggest My Plan</button></div></div><div id="planOutput" class="dayPlan"></div><div class="panel" style="margin-top:20px"><div class="eyebrow">EDIT YOUR PLAN</div><h3>Add another place</h3><p class="muted">After the suggestion appears, choose a place and add it to a day.</p><div class="form"><select id="addPlace"></select><select id="addDay"></select><button class="btn" id="addToPlan">Add to selected day</button></div></div></div></div></section>
 
-<section class="page" id="stayfood"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">STAY • EAT • COFFEE • BUSINESS</div><h2>Stays, Food & Local Business</h2><p>Hotels, resorts, restaurants and cafés — including the local businesses you supplied. Use <b>Request Room</b> to create a booking enquiry, or list a property to receive future booking leads.</p></div></div>
+<section class="page" id="stayfood"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">STAY • EAT • COFFEE</div><h2>Stays & Food</h2><p>Hotels, resorts, restaurants and cafés — local and familiar options. Open Google Maps for current photos, directions and live business information.</p></div></div>
 <div class="bookingBanner" style="background:#fff">
   <div><div class="eyebrow">FOR HOTEL & HOMESTAY PARTNERS</div>
     <h3>Turn local stays into bookable business</h3>
@@ -69,19 +73,36 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
   </div>
   <div class="bookingActions"><button class="btn" onclick="openPartner()">📋 List My Property</button></div>
 </div>
-<div class="twoCol" style="margin:20px 0">
-  <div class="panel"><div class="eyebrow">TRAVELLER BOOKING</div><h3>🏨 Request a room</h3><p class="muted">Choose a hotel or resort, dates, guests and rooms. The current GitHub version records the enquiry on the device; a backend can later send it to the property and handle live availability, payment and confirmation.</p><button class="btn primary" onclick="openBooking()">Start Room Booking</button></div>
-  <div class="panel"><div class="eyebrow">BUSINESS MODEL</div><h3>💼 For hotels & local businesses</h3><p class="muted">Businesses can submit their property details, room types, prices and contact information. This creates a foundation for booking commissions, subscriptions and featured listings.</p><button class="btn" onclick="openPartner()">List My Business</button></div>
-</div>
 <div class="chips" id="venueChips"><button class="chip active" data-type="All">All</button><button class="chip" data-type="Hotel">Hotels</button><button class="chip" data-type="Resort">Resorts</button><button class="chip" data-type="Restaurant">Restaurants</button><button class="chip" data-type="Cafe">Local & Famous Cafés</button></div><div class="grid" id="venueGrid"></div></div></div></section>
 
 <section class="page" id="entertainment"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">CITY • FUN • EVENINGS</div><h2>Entertainment</h2><p>Gaming, theatres, shopping and food experiences around Hassan. Ratings are shown only when supplied by the current listing; Maps is the live source.</p></div></div><div class="grid" id="entGrid"></div></div></div></section>
 
-<section class="page" id="community"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">COMMUNITY</div><h2>Feedback • Suggestions • Challenge</h2><p>Make Hassan Discover better by sharing experiences and hidden places.</p></div></div><div class="twoCol"><div class="panel"><h3>💬 Feedback</h3><p class="muted">Tell us what worked, what didn't, and what should be added.</p><button class="btn primary" onclick="openModal('feedback')">Send Feedback</button></div><div class="panel"><h3>💡 Suggest a Place</h3><p class="muted">Know a hidden Hassan spot that deserves to be discovered?</p><button class="btn" onclick="openModal('suggest')">Suggest Place</button></div></div><div style="height:20px"></div><div class="challenge"><div class="eyebrow" style="color:#d9e7dc">HASSAN DISCOVER CHALLENGE</div><h2>Find something people haven't seen yet.</h2><p>Visit a lesser-known place, share the experience and help another traveller discover it. Keep the focus on the place — no personal photos are required.</p><div class="stats"><div class="stat">📍 Discover a place</div><div class="stat">📸 Share the place</div><div class="stat">⭐ Review it</div><div class="stat">🏆 Complete the challenge</div></div></div><div style="height:20px"></div><div class="panel"><h3>Community reviews</h3><div id="reviews"></div></div></div></div></section>
+<section class="page" id="community"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">COMMUNITY</div><h2>Feedback • Suggestions • Challenge</h2><p>Make Hassan Discover better by sharing experiences and hidden places.</p></div></div><div class="twoCol"><div class="panel"><h3>💬 Feedback</h3><p class="muted">Tell us what worked, what didn't, and what should be added.</p><button class="btn primary" onclick="openModal('feedback')">Send Feedback</button></div><div class="panel"><h3>💡 Suggest a Place</h3><p class="muted">Know a hidden Hassan spot that deserves to be discovered?</p><button class="btn" onclick="openModal('suggest')">Suggest Place</button></div></div><div style="height:20px"></div><div class="challenge">
+<div class="eyebrow" style="color:#d9e7dc">HASSAN DISCOVER CHALLENGE</div>
+<h2>Complete the Hassan Discover Challenge 🏆</h2>
+<p>Pick a challenge, complete it, and track your progress on this device. No personal photos are required.</p>
+<div class="panel" style="margin-top:18px;color:#1f3529">
+  <h3 id="challengeTitle">📍 Discover a lesser-known place</h3>
+  <p id="challengeText">Visit one hidden or lesser-known Hassan destination and open its Google Maps location.</p>
+  <div class="stats">
+    <div class="stat" style="color:#fff">🏆 <span id="challengeScore">0</span>/4 completed</div>
+  </div>
+  <div class="cardActions" style="margin-top:18px">
+    <button class="btn primary" id="challengeAction" onclick="doChallengeAction()">Open Challenge</button>
+    <button class="btn" onclick="completeChallenge()">✓ Mark Challenge Complete</button>
+    <button class="btn" onclick="nextChallenge()">Next Challenge →</button>
+    <button class="btn" onclick="resetChallenge()">Reset</button>
+  </div>
+  <div id="challengeProgress" class="notice" style="margin-top:15px">Challenge 1 of 4</div>
+</div>
+</div><div style="height:20px"></div><div class="panel"><h3>Community reviews</h3><div id="reviews"></div></div></div></div></section>
 </main>
 <footer class="footer"><div class="container footerGrid"><div><h2>Hassan Discover</h2><p>Smart Local Tourism & Cultural Heritage Portal.<br><b>There’s more than you think.</b></p><p style="font-size:12px">© <span id="year"></span> Hassan Discover</p></div><div><b>Explore</b><a href="#" onclick="showPage('explore');return false">Places</a><a href="#" onclick="showPage('planner');return false">Trip Planner</a><a href="#" onclick="showPage('stayfood');return false">Stays & Food</a></div><div><b>Community</b><a href="#" onclick="showPage('entertainment');return false">Entertainment</a><a href="#" onclick="showPage('community');return false">Feedback & Challenge</a></div></div></footer><div class="container" style="padding-top:14px;font-size:12px;color:#aebdb3">Destination photography: Hassan District, Government of Karnataka photo galleries where available. <a href="https://hassan.nic.in/en/photo-gallery/" target="_blank" rel="noopener" style="display:inline;color:#dce8df">Photo source &amp; credits</a>.</div>
 
 <div class="modal" id="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Share</h2><form class="form" id="modalForm"><input id="mName" placeholder="Name / nickname" required><input id="mPlace" placeholder="Place / business / destination"><textarea id="mText" placeholder="Your feedback or suggestion" required></textarea><select id="mRating"><option value="">Rating (optional)</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select><button class="btn primary">Submit</button></form></div></div><div class="toast" id="toast"></div>
+<div class="modal" id="bookingModal"><div class="modalBox wide"><button class="close" onclick="closeBooking()">×</button><h2>🏨 Request a Room</h2><p class="muted">Choose a property and send a booking enquiry. This GitHub version stores the request on this device; live availability/payment needs a connected hotel or booking backend.</p><form class="form" id="bookingForm"><div class="formGrid"><div><label>Property</label><select id="bookProperty" required></select></div><div><label>Rooms</label><input id="bookRooms" type="number" min="1" max="10" value="1" required></div><div><label>Check-in</label><input id="bookIn" type="date" required></div><div><label>Check-out</label><input id="bookOut" type="date" required></div><div><label>Adults</label><input id="bookAdults" type="number" min="1" max="20" value="2" required></div><div><label>Phone</label><input id="bookPhone" type="tel" placeholder="Phone number" required></div><div><label>Your name</label><input id="bookName" placeholder="Full name" required></div><div><label>Email</label><input id="bookEmail" type="email" placeholder="you@example.com"></div><div class="full"><label>Special request</label><textarea id="bookNote" placeholder="Room preference, arrival time, etc."></textarea></div></div><button class="btn primary" type="submit">Send Booking Enquiry</button></form><div id="bookingResult" style="display:none;margin-top:15px"></div></div></div>
+<div class="modal" id="partnerModal"><div class="modalBox wide"><button class="close" onclick="closePartner()">×</button><h2>📋 List My Property</h2><p class="muted">For hotels, resorts and homestays that want to receive booking leads through Hassan Discover.</p><form class="form" id="partnerForm"><div class="formGrid"><div><label>Business / property name</label><input id="partnerName" required></div><div><label>Contact person</label><input id="partnerContact" required></div><div><label>Phone</label><input id="partnerPhone" type="tel" required></div><div><label>Email</label><input id="partnerEmail" type="email"></div><div class="full"><label>Property type</label><select id="partnerType"><option>Hotel</option><option>Resort</option><option>Homestay</option><option>Restaurant</option><option>Cafe</option></select></div></div><button class="btn primary" type="submit">Submit Partner Interest</button></form></div></div>
+
 <script>
 const IMG={
  'Halebidu • Hoysaleshwara Temple':'images/halebidu.jpg',
@@ -174,12 +195,32 @@ const entertainment=[
 ];
 let activeCat='All',activeType='All',currentPlan=[],currentDays=2,currentPlanDays={}; const CAT_ORDER={Heritage:0,Temples:1,Nature:2,Hills:3,'Hidden Gems':4};
 const maps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('navlinks').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});if(id==='explore')renderPlaces();if(id==='stayfood')renderVenues();if(id==='entertainment')renderEntertainment();if(id==='community')renderReviews()}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('navlinks').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});if(id==='explore')renderPlaces();if(id==='stayfood')renderVenues();if(id==='entertainment')renderEntertainment();if(id==='community'){renderReviews();renderChallenge()}}
 function photo(src,name,emoji='📍'){if(!src)return `<div class="fallback">${emoji}<br>${name}<br><small>Verified photo not added yet</small></div>`;return `<img src="${src}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'fallback\'>${emoji}<br>${name}<br><small>Photo unavailable — open Maps for current photos</small></div>')">`}
 function renderPlaces(){let q=(document.getElementById('placeSearch').value||'').toLowerCase();let arr=places.filter(p=>(activeCat==='All'||p.cat===activeCat)&&(`${p.name} ${p.loc} ${p.cat}`).toLowerCase().includes(q));document.getElementById('placeCount').textContent=arr.length+' places';document.getElementById('placeGrid').innerHTML=arr.map(p=>`<article class="card"><div class="photo">${photo(p.img,p.name)}</div><div class="cardBody"><span class="badge">${p.cat}</span><h3>${p.name}</h3><div class="meta">📍 ${p.loc}</div><p>${p.desc}</p><div class="cardActions"><button class="btn small" onclick="openDetail(${p.id})">View Details</button><a class="btn small" target="_blank" href="${maps(p.name+' '+p.loc)}">Google Maps</a></div></div></article>`).join('')||'<div class="empty">No places found. Try another search.</div>'}
 function openDetail(id){let p=places[id];document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('explore')">← Back to Explore</button><div class="detailHero"><div class="photo">${photo(p.img,p.name)}</div><div class="panel"><span class="badge">${p.cat}</span><h2>${p.name}</h2><p class="meta">📍 ${p.loc}</p><p>${p.desc}</p><div class="notice">📸 Photo rule: Hassan Discover does not replace a place with a random landmark. If a verified image is unavailable, the page uses a placeholder instead.</div><div class="cardActions"><a class="btn primary" target="_blank" href="${maps(p.name+' '+p.loc)}">📍 Open Google Maps</a><button class="btn" onclick="openModal('review','${p.name.replaceAll("'","\\'")}')">⭐ Review</button></div></div></div>`;showPage('placeDetail')}
-function renderVenues(){let arr=venues.filter(v=>activeType==='All'||v.type===activeType);document.getElementById('venueGrid').innerHTML=arr.map(v=>`<article class="card"><div class="photo">${photo(v.img,v.name,v.type==='Cafe'?'☕':v.type==='Restaurant'?'🍽️':'🏨')}</div><div class="cardBody"><span class="badge">${v.type}</span><h3>${v.name}</h3><div class="meta">📍 ${v.loc}</div><p>${v.desc}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><a class="btn small" target="_blank" href="${maps(v.name+' '+v.loc)}">Google Maps</a><button class="btn small" onclick="openModal('review','${v.name.replaceAll("'","\\'")}')">Reviews</button>${(v.type==='Hotel'||v.type==='Resort')?`<button class="bookRoomBtn" onclick="openBooking('${v.name.replaceAll("'","\\'")}')">🏨 Request Room</button>`:''}</div></div></article>`).join('')}
-function renderEntertainment(){document.getElementById('entGrid').innerHTML=entertainment.map(v=>`<article class="card"><div class="photo">${photo(IMG[v[0]]||'',v[0],v[3])}</div><div class="cardBody"><span class="badge">${v[1]}</span><h3>${v[0]}</h3><div class="meta">📍 ${v[2]}</div><p>${v[4]}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><a class="btn small" target="_blank" href="${maps(v[0]+' '+v[2])}">Google Maps</a><button class="btn small" onclick="openModal('review','${v[0].replaceAll("'","\'")}')">Review</button></div></div></article>`).join('')}
+function renderVenues(){
+  let arr=venues.filter(v=>activeType==='All'||v.type===activeType);
+  document.getElementById('venueGrid').innerHTML=arr.map(v=>`<article class="card" role="button" tabindex="0" onclick="openVenueDetail(${v.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVenueDetail(${v.id})}"><div class="photo">${photo(v.img,v.name,v.type==='Cafe'?'☕':v.type==='Restaurant'?'🍽️':'🏨')}</div><div class="cardBody"><span class="badge">${v.type}</span><h3>${v.name}</h3><div class="meta">📍 ${v.loc}</div><p>${v.desc}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><button class="btn small" onclick="event.stopPropagation();openVenueDetail(${v.id})">View Details</button><a class="btn small" target="_blank" rel="noopener" href="${maps(v.name+' '+v.loc)}" onclick="event.stopPropagation()">Google Maps</a><button class="btn small" onclick="event.stopPropagation();openVenueReview(${v.id})">Reviews</button>${(v.type==='Hotel'||v.type==='Resort')?`<button class="btn small" onclick="event.stopPropagation();openBookingById(${v.id})">🏨 Request Room</button>`:''}</div></div></article>`).join('')||'<div class="empty">No stays or food venues found.</div>'
+}
+function openVenueReview(id){const v=venues[id];if(v)openModal('review',v.name);}
+function openBookingById(id){const v=venues[id];if(v)openBooking(v?v.name:'');}
+function openVenueDetail(id){
+  const v=venues[id]; if(!v)return;
+  const isStay=v.type==='Hotel'||v.type==='Resort';
+  const action=isStay?`<button class="btn primary" onclick="openBookingById(${v.id})">🏨 Request a Room</button>`:`<a class="btn primary" target="_blank" rel="noopener" href="${maps(v.name+' '+v.loc)}">📍 Open Google Maps</a>`;
+  document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('stayfood')">← Back to Stays & Food</button><div class="detailHero"><div class="photo">${photo(v.img,v.name,v.type==='Cafe'?'☕':v.type==='Restaurant'?'🍽️':'🏨')}</div><div class="detailPanel"><span class="badge">${v.type}</span><h2>${v.name}</h2><p class="meta">📍 ${v.loc}</p><p>${v.desc}</p><div class="detailList"><div class="detailRow"><b>Category</b><span>${v.type}</span></div><div class="detailRow"><b>Location</b><span>${v.loc}</span></div><div class="detailRow"><b>Live info</b><span>Use Google Maps for current hours, directions, photos and business status.</span></div>${isStay?`<div class="detailRow"><b>Booking</b><span>Send a room enquiry with dates, guests and room count.</span></div>`:''}</div><div class="cardActions">${action}<a class="btn" target="_blank" rel="noopener" href="${maps(v.name+' '+v.loc)}">🗺️ Directions</a><button class="btn" onclick="openVenueReview(${v.id})">⭐ Review</button></div></div></div>`;
+  showPage('placeDetail');
+}
+function renderEntertainment(){
+  document.getElementById('entGrid').innerHTML=entertainment.map((v,i)=>`<article class="card" role="button" tabindex="0" onclick="openEntertainmentDetail(${i})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEntertainmentDetail(${i})}"><div class="photo">${photo(IMG[v[0]]||'',v[0],v[3])}</div><div class="cardBody"><span class="badge">${v[1]}</span><h3>${v[0]}</h3><div class="meta">📍 ${v[2]}</div><p>${v[4]}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><button class="btn small" onclick="event.stopPropagation();openEntertainmentDetail(${i})">View Details</button><a class="btn small" target="_blank" rel="noopener" href="${maps(v[0]+' '+v[2])}" onclick="event.stopPropagation()">Google Maps</a><button class="btn small" onclick="event.stopPropagation();openEntertainmentReview(${i})">Review</button></div></div></article>`).join('');
+}
+function openEntertainmentReview(id){const v=entertainment[id];if(v)openModal('review',v[0]);}
+function openEntertainmentDetail(id){
+  const v=entertainment[id]; if(!v)return;
+  document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('entertainment')">← Back to Entertainment</button><div class="detailHero"><div class="photo">${photo(IMG[v[0]]||'',v[0],v[3])}</div><div class="detailPanel"><span class="badge">${v[1]}</span><h2>${v[0]}</h2><p class="meta">📍 ${v[2]}</p><p>${v[4]}</p><div class="detailList"><div class="detailRow"><b>Category</b><span>${v[1]}</span></div><div class="detailRow"><b>Location</b><span>${v[2]}</span></div><div class="detailRow"><b>Live info</b><span>Use Google Maps for current opening hours, directions, photos and business status.</span></div></div><div class="cardActions"><a class="btn primary" target="_blank" rel="noopener" href="${maps(v[0]+' '+v[2])}">📍 Open Google Maps</a><button class="btn" onclick="openEntertainmentReview(${id})">⭐ Review</button></div></div></div>`;
+  showPage('placeDetail');
+}
 function suggestPlan(){currentDays=Math.max(1,Math.min(10,Number(document.getElementById('days').value)||1));let order=[...places].sort((a,b)=>(CAT_ORDER[a.cat]??9)-(CAT_ORDER[b.cat]??9));currentPlan=order.slice(0,Math.min(places.length,currentDays*2)).map(p=>p.id);currentPlanDays={};currentPlan.forEach((id,i)=>currentPlanDays[id]=i%currentDays);renderPlan();fillAddSelectors();toast('Suggested itinerary created ✨')}
 function planBuckets(){let b=Array.from({length:currentDays},()=>[]);currentPlan.forEach((id,i)=>b[currentPlanDays[id]??(i%currentDays)].push(id));return b}
 function nearbyFood(p){let same=venues.filter(v=>v.type==='Restaurant'||v.type==='Cafe').filter(v=>v.loc.toLowerCase().includes(p.loc.toLowerCase())||p.loc==='Hassan district').slice(0,2);if(!same.length)same=venues.filter(v=>v.type==='Restaurant'||v.type==='Cafe').slice(0,2);return same.map(v=>`🍽️ ${v.name}`).join(' • ')}
@@ -190,9 +231,63 @@ function addSelected(){let id=Number(document.getElementById('addPlace').value),
 function openModal(type,place=''){document.getElementById('modal').classList.add('open');document.getElementById('modalTitle').textContent=type==='feedback'?'Send Feedback':type==='suggest'?'Suggest a Place':'Share a Review';document.getElementById('mPlace').value=place}
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function saveSubmission(e){e.preventDefault();let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');arr.unshift({name:mName.value,place:mPlace.value,text:mText.value,rating:mRating.value,date:new Date().toLocaleDateString()});localStorage.setItem('hdReviews',JSON.stringify(arr));e.target.reset();closeModal();renderReviews();toast('Saved ✓')}
+
+const challengeData=[
+  ["📍 Discover a lesser-known place","Visit one hidden or lesser-known Hassan destination and open its Google Maps location."],
+  ["📸 Share a place","Share a useful description or recommendation for a Hassan destination."],
+  ["⭐ Review a place","Leave a review for a place through the Community section."],
+  ["🗺️ Plan your trip","Create an itinerary using the Trip Planner."]
+];
+let challengeIndex=Number(localStorage.getItem('hdChallengeIndex')||0);
+let challengeDone=JSON.parse(localStorage.getItem('hdChallengeDone')||'[]');
+function renderChallenge(){
+  const d=challengeData[challengeIndex];
+  const title=document.getElementById('challengeTitle');
+  const textEl=document.getElementById('challengeText');
+  const score=document.getElementById('challengeScore');
+  const progress=document.getElementById('challengeProgress');
+  if(!title||!textEl||!score||!progress)return;
+  title.textContent=d[0];
+  textEl.textContent=d[1];
+  score.textContent=challengeDone.length;
+  progress.textContent=`Challenge ${challengeIndex+1} of ${challengeData.length}`+
+    (challengeDone.includes(challengeIndex)?" • ✓ Completed":"");
+  const action=document.getElementById('challengeAction');
+  if(action){action.textContent=['📍 Open a hidden place','💡 Suggest a place','⭐ Write a review','🧳 Open Trip Planner'][challengeIndex];}
+}
+function doChallengeAction(){
+  if(challengeIndex===0){window.open(maps('Haluvagilu Hassan Karnataka'),'_blank','noopener');}
+  else if(challengeIndex===1){openModal('suggest');}
+  else if(challengeIndex===2){openModal('review');}
+  else {showPage('planner');}
+}
+function completeChallenge(){
+  if(!challengeDone.includes(challengeIndex)){
+    challengeDone.push(challengeIndex);
+    localStorage.setItem('hdChallengeDone',JSON.stringify(challengeDone));
+    toast('Challenge completed 🏆');
+  }else{
+    toast('Already completed ✓');
+  }
+  renderChallenge();
+}
+function nextChallenge(){
+  challengeIndex=(challengeIndex+1)%challengeData.length;
+  localStorage.setItem('hdChallengeIndex',challengeIndex);
+  renderChallenge();
+}
+function resetChallenge(){
+  challengeDone=[];
+  challengeIndex=0;
+  localStorage.setItem('hdChallengeDone','[]');
+  localStorage.setItem('hdChallengeIndex','0');
+  renderChallenge();
+  toast('Challenge progress reset');
+}
+
 function renderReviews(){let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');document.getElementById('reviews').innerHTML=arr.length?arr.slice(0,12).map(r=>`<div class="reviewCard"><b>${r.place||'Hassan Discover'}</b> ${r.rating?`<span class="rating">★ ${r.rating}</span>`:''}<div class="meta">${r.name} • ${r.date}</div><p>${r.text}</p></div>`).join(''):'<div class="empty">No community submissions yet. Be the first one.</div>'}
 function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
-document.querySelectorAll('.navlinks button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.getElementById('menu').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));document.getElementById('placeSearch').addEventListener('input',renderPlaces);document.querySelectorAll('#placeChips .chip').forEach(b=>b.addEventListener('click',()=>{activeCat=b.dataset.cat;document.querySelectorAll('#placeChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPlaces()}));document.querySelectorAll('#venueChips .chip').forEach(b=>b.addEventListener('click',()=>{activeType=b.dataset.type;document.querySelectorAll('#venueChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderVenues()}));document.getElementById('makePlan').addEventListener('click',suggestPlan);document.getElementById('addToPlan').addEventListener('click',addSelected);document.getElementById('modalForm').addEventListener('submit',saveSubmission);document.getElementById('navlinks').querySelector('[data-page="home"]').classList.add('active');renderPlaces();renderVenues();renderEntertainment();renderReviews();
+document.querySelectorAll('.navlinks button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.getElementById('menu').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));document.getElementById('placeSearch').addEventListener('input',renderPlaces);document.querySelectorAll('#placeChips .chip').forEach(b=>b.addEventListener('click',()=>{activeCat=b.dataset.cat;document.querySelectorAll('#placeChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPlaces()}));document.querySelectorAll('#venueChips .chip').forEach(b=>b.addEventListener('click',()=>{activeType=b.dataset.type;document.querySelectorAll('#venueChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderVenues()}));document.getElementById('makePlan').addEventListener('click',suggestPlan);document.getElementById('addToPlan').addEventListener('click',addSelected);document.getElementById('modalForm').addEventListener('submit',saveSubmission);document.getElementById('navlinks').querySelector('[data-page="home"]').classList.add('active');renderPlaces();renderVenues();renderEntertainment();renderReviews();renderChallenge();
 
 function openBooking(property=''){
   const modal=document.getElementById('bookingModal');
