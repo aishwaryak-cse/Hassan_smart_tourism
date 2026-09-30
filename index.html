@@ -79,23 +79,28 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
 
 <section class="page" id="community"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">COMMUNITY</div><h2>Feedback • Suggestions • Challenge</h2><p>Make Hassan Discover better by sharing experiences and hidden places.</p></div></div><div class="twoCol"><div class="panel"><h3>💬 Feedback</h3><p class="muted">Tell us what worked, what didn't, and what should be added.</p><button class="btn primary" onclick="openModal('feedback')">Send Feedback</button></div><div class="panel"><h3>💡 Suggest a Place</h3><p class="muted">Know a hidden Hassan spot that deserves to be discovered?</p><button class="btn" onclick="openModal('suggest')">Suggest Place</button></div></div><div style="height:20px"></div><div class="challenge">
 <div class="eyebrow" style="color:#d9e7dc">HASSAN DISCOVER CHALLENGE</div>
-<h2>Complete the Hassan Discover Challenge 🏆</h2>
-<p>Pick a challenge, complete it, and track your progress on this device. No personal photos are required.</p>
+<h2>🎲 Your Random Hassan Challenge</h2>
+<p>Get a surprise place to visit. Explore it, then upload a photo you took there to complete the challenge.</p>
 <div class="panel" style="margin-top:18px;color:#1f3529">
-  <h3 id="challengeTitle">📍 Discover a lesser-known place</h3>
-  <p id="challengeText">Visit one hidden or lesser-known Hassan destination and open its Google Maps location.</p>
-  <div class="stats">
-    <div class="stat" style="color:#fff">🏆 <span id="challengeScore">0</span>/4 completed</div>
-  </div>
+  <h3 id="challengeTitle">🎲 Tap “Give Me a Challenge”</h3>
+  <p id="challengeText">We’ll randomly choose one Hassan destination from the places in this website.</p>
+  <div id="challengePlaceInfo" class="notice" style="margin-top:12px;display:none"></div>
   <div class="cardActions" style="margin-top:18px">
-    <button class="btn primary" id="challengeAction" onclick="doChallengeAction()">Open Challenge</button>
-    <button class="btn" onclick="completeChallenge()">✓ Mark Challenge Complete</button>
-    <button class="btn" onclick="nextChallenge()">Next Challenge →</button>
-    <button class="btn" onclick="resetChallenge()">Reset</button>
+    <button class="btn primary" type="button" onclick="randomChallenge()">🎲 Give Me a Challenge</button>
+    <button class="btn" type="button" id="challengeOpen" onclick="openChallengePlace()" disabled>📍 Open Place</button>
   </div>
-  <div id="challengeProgress" class="notice" style="margin-top:15px">Challenge 1 of 4</div>
+  <div id="challengeUploadBox" style="display:none;margin-top:16px">
+    <label><b>📸 Upload a photo from your visit</b></label>
+    <input id="challengePhoto" type="file" accept="image/*" style="display:block;width:100%;margin-top:10px;padding:12px;border:1px dashed #b8c9bc;border-radius:12px;background:#f8faf8">
+    <div id="challengePreview" style="margin-top:12px"></div>
+  </div>
+  <div class="stats">
+    <div class="stat" style="color:#fff">🏆 <span id="challengeScore">0</span> completed</div>
+    <div class="stat" style="color:#fff">🎯 Photo upload completes the challenge</div>
+  </div>
+  <div id="challengeProgress" class="notice" style="margin-top:15px">No active challenge yet.</div>
 </div>
-</div><div style="height:20px"></div><div class="panel"><h3>Community reviews</h3><div id="reviews"></div></div></div></div></section>
+</div></div><div style="height:20px"></div><div class="panel"><h3>Community reviews</h3><div id="reviews"></div></div></div></div></section>
 </main>
 <footer class="footer"><div class="container footerGrid"><div><h2>Hassan Discover</h2><p>Smart Local Tourism & Cultural Heritage Portal.<br><b>There’s more than you think.</b></p><p style="font-size:12px">© <span id="year"></span> Hassan Discover</p></div><div><b>Explore</b><a href="#" onclick="showPage('explore');return false">Places</a><a href="#" onclick="showPage('planner');return false">Trip Planner</a><a href="#" onclick="showPage('stayfood');return false">Stays & Food</a></div><div><b>Community</b><a href="#" onclick="showPage('entertainment');return false">Entertainment</a><a href="#" onclick="showPage('community');return false">Feedback & Challenge</a></div></div></footer>
 
@@ -157,6 +162,28 @@ const IMG={
  'D-Mart':'images/d-mart.jpg',
  'City Point':'images/city-point.jpg'
 };
+const placeHistory={
+'Belur • Chennakeshava Temple':`Belur was an important Hoysala centre and an early capital of the dynasty. The Chennakeshava Temple was consecrated by King Vishnuvardhana in 1116 CE to commemorate victories over the Cholas. The temple is celebrated for its soapstone carving, more than 80 Madanika figures and sculptural panels depicting Vishnu and other themes.`,
+'Halebidu • Hoysaleshwara Temple':`Halebidu, historically known as Dwarasamudra, became the later capital of the Hoysalas. The Hoysaleshwara and Kedareshwara temples are associated with the Hoysala rulers Vishnuvardhana and Ballala II. Their outer walls preserve extensive stone narratives from the Ramayana, Mahabharata and Bhagavata traditions.`,
+'Shettihalli Rosary Church':`The church was built in the 1860s by French missionaries serving the mainly British estate community. Its Gothic structure was abandoned after the Hemavati Dam and Reservoir altered the area; during the monsoon, rising water can partially submerge the ruins, giving the site its popular “Floating Church” identity.`,
+'Manjarabad Fort':`Manjarabad Fort was built by Tipu Sultan in 1792 on a hill near Sakleshpur. The fort’s distinctive star/cross-shaped plan, elevated position and defensive rooms reflect its military purpose in the late-18th-century Mysore period. The surrounding Western Ghats landscape also shaped its strategic setting.`,
+'Hasanamba Temple':`Hasanamba Temple is one of Hassan city’s major historic shrines. District records connect the shrine with an old Siddheshwara–Hasanamba tradition and describe legends surrounding the goddess and the origin of the name Hassan. The temple is opened for public darshan during a short annual period around Deepavali, and local tradition holds that a lamp remains lit and flowers retain freshness until the next opening.`,
+'Shravanabelagola':`Shravanabelagola has been a major Jain centre for more than two millennia. District history records the tradition of Jain acharya Bhadrabahu arriving from Ujjain with disciples, followed by Chandragupta Maurya. The 981 CE Gommateshwara/Bahubali monolith, commissioned by Chavundaraya, became the site’s defining monument; Chandragiri also preserves Jain basadis and memorial traditions.`,
+'Gorur & Hemavati Reservoir':`The Hemavati Dam at Gorur was built in 1979 across the Hemavati River, a tributary of the Cauvery. It was created for drinking water and irrigation and transformed the surrounding landscape into a major reservoir. The dam and its gardens are now also used as a visitor destination, especially during the rainy season.`,
+'Bisle Ghat':`Bisle is part of a large reserved forest region in the Western Ghats spanning Hassan, Kodagu and Dakshina Kannada. The forest contains several hillocks and supports rich tree and wildlife diversity. Local communities have historically played an important role in protecting the forest, including responding to summer fires and guarding against illegal timber and hunting.`,
+'Seege Gudda':`Seege Gudda is associated with the Male Malleshwara/Shiva temple on a hilltop. Hassan District tourism material describes the hill as a scenic, green setting with a peaceful temple atmosphere and includes it in a Hassan–Belur–Halebidu tour route.`,
+'Mavinakere Betta':`Mavinakere Betta is presented on this portal as a local hill destination. Detailed published historical documentation for the hill itself is limited, so this page does not invent a royal or temple history. Its value is primarily the local landscape and hill experience; visitors should check current access and local guidance.`,
+'Mavnur Betta':`Mavnur Betta is a local hill destination in the Hassan region. Publicly documented historical detail is limited compared with the district’s major Hoysala monuments, so this portal keeps the history note factual rather than adding unverified legends. The experience is centred on the hill landscape and local travel.`,
+'Jenkal Siddeshwara Betta':`Jenukal Siddheshwara Betta is associated with Siddheshwara (Shiva). Hassan District tourism material explains that “Jenukal” means “honey rock” in Kannada and connects the name with the area’s historical association with wild honeycombs. The hill is also known for natural rock formations and seasonal bee colonies.`,
+'Pushpagiri Betta':`Pushpagiri is part of the hill and forest landscape around the Bisle–Western Ghats region. District tourism sources list Pushpagiri among the hillocks of the Bisle forest region. Its history is therefore closely tied to the long-standing forest and hill ecology of the Western Ghats rather than to a single built monument.`,
+'Hulikal Veerabhadra Swamy Betta':`Hulikal Veerabhadra Swamy Betta is presented here as a local hill-and-temple destination. Detailed published historical records for the specific hill are limited, so the portal avoids attributing an unsupported date or dynasty. The site’s heritage is primarily associated with its local religious tradition and hill setting.`,
+'Kondajji Varadaraju Swamy Temple':`Kondajji’s Varadarajaswamy temple is a local Vaishnava place of worship. Hassan District’s tourism package describes an 18-foot black-stone Varadaraja idol holding the conch, mace and lotus and showing the Abhaya Mudra. The temple is noted for its peaceful spiritual setting.`,
+'Koravangala Temple':`Koravangala is home to the 12th-century Būcēśvara/Bucheshwara temple, an important Hoysala monument. It was built by the wealthy officer Buchi/Buchiraja during the reign of Veera Ballala II, with twin sanctums dedicated to Shiva and Surya. Its carvings include Shaiva, Vaishnava, Shakta and epic themes.`,
+'Doddagaddavalli Lakshmi Temple':`The Lakshmi Devi Temple at Doddagaddavalli was commissioned in 1113 CE by the merchant Kullahana Rahuta and his wife Sahajadevi during the reign of Hoysala King Vishnuvardhana. It is one of the earliest recognizably Hoysala temples and is unusual for its four-shrine (chatuskuta) plan. The UNESCO Hoysala nomination records the site as an early Hoysala monument built in chloritic schist.`,
+'Tom Bridge':`Tom Bridge is included on this portal as a community-suggested hidden spot. A reliable, detailed published historical account was not located, so the site is intentionally described as a local discovery rather than being given an invented historical story.`,
+'Haluvagilu':`Haluvagilu is included by Hassan District tourism as a small check-dam and local visitor stop. Its story is primarily connected with local water infrastructure and the surrounding rural landscape; detailed older historical records for the specific site are limited.`,
+'Gendekatte Forest':`Gendekatte Forest is presented as a local nature destination. Detailed published historical documentation for the specific forest area is limited, so this portal focuses on its natural setting and local tourism value rather than inventing a historical narrative.`
+};
 const places=[
 ['Belur • Chennakeshava Temple','Heritage','Belur','Hoysala architectural landmark known for intricate stone sculpture.'],
 ['Halebidu • Hoysaleshwara Temple','Heritage','Halebidu','Major Hoysala temple complex with detailed stone carvings.'],
@@ -178,7 +205,9 @@ const places=[
 ['Tom Bridge','Hidden Gems','Hassan district','Community-suggested local spot.'],
 ['Haluvagilu','Hidden Gems','Hassan district','Community-suggested lesser-known place.'],
 ['Gendekatte Forest','Nature','Hassan district','Community-suggested nature area.']
-].map((x,i)=>({id:i,name:x[0],cat:x[1],loc:x[2],desc:x[3],img:IMG[x[0]]||''}));
+
+
+].map((x,i)=>({id:i,name:x[0],cat:x[1],loc:x[2],desc:x[3],history:placeHistory[x[0]]||'Detailed published historical information for this place is limited; this portal avoids unverified claims.',img:IMG[x[0]]||''}));
 const venues=[
 ['Hoysala Village Resort','Resort','Belur–Halebidu Road','Heritage-style stay near the Hoysala circuit.'],['Hotel Mayura International','Hotel','Hassan','City stay with dining.'],['Hotel Jewel Rock','Hotel','Hassan','Central Hassan stay.'],['Palguni Residency','Hotel','Hassan','Central city accommodation.'],['Hotel Varun Mansion','Hotel','Hassan','Hotel and dining/convention option.'],['Hotel Suvarna Regency','Hotel','Hassan','City hotel with restaurant.'],['New Suvarna Resorts','Resort','Hassan','Resort listing — check current availability on Maps.'],['Mountain Peak Resort','Resort','Sakleshpur','Sakleshpur stay option.'],['Nyritvilla Homestay','Resort','Sakleshpur','Estate-style homestay option.'],['Hoysala Village Restaurant','Restaurant','Belur–Halebidu Road','Dining near the Hoysala heritage circuit.'],['Parijata Restaurant','Restaurant','Hassan','Restaurant listing in Hassan.'],['Infinity Cafe & Restaurants','Restaurant','Hassan','Vegetarian café/restaurant listing.'],['Ossoor Vegetarian Restaurant','Restaurant','Sakleshpur','Vegetarian restaurant option.'],['Hotel Raama','Restaurant','Hassan','Restaurant listing in Hassan.'],["KING'S COFFEE CO. Hassan",'Cafe','Hassan','Coffee-focused local stop.'],['Growers Coffee House','Cafe','Hassan','Coffee and food stop.'],['Cafe Periwinkle','Cafe','Hassan','Local café listing.'],['Cothas Coffee - Hassan','Cafe','Hassan','Coffee shop listing.'],['Daily Dose Resto Cafe','Cafe','Hassan','Local café/restaurant listing.'],['Hatti Kaapi','Cafe','Hassan','Coffee and snack stop.'],['Cafe 360','Cafe','Hassan','Coffee and beverages café.'],['Corner Cafe','Cafe','Hassan','Local café listing.'],['Cafe 75','Cafe','Hassan','Local café listing.'],['Cholas Coffee','Cafe','Hassan','Coffee café listing.'],["Home's Cafe",'Cafe','Hassan','Local café listing.'],['Deltin Cafe','Cafe','Hassan','Local café listing.'],['Cafe Connect','Cafe','Hassan','Local café listing.']
 ].map((x,i)=>({id:i,name:x[0],type:x[1],loc:x[2],desc:x[3],img:IMG[x[0]]||''}));
@@ -198,7 +227,7 @@ const maps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURICompon
 function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('navlinks').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});if(id==='explore')renderPlaces();if(id==='stayfood')renderVenues();if(id==='entertainment')renderEntertainment();if(id==='community'){renderReviews();renderChallenge()}}
 function photo(src,name,emoji='📍'){if(!src)return `<div class="fallback">${emoji}<br>${name}<br><small>Verified photo not added yet</small></div>`;return `<img src="${src}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'fallback\'>${emoji}<br>${name}<br><small>Photo unavailable — open Maps for current photos</small></div>')">`}
 function renderPlaces(){let q=(document.getElementById('placeSearch').value||'').toLowerCase();let arr=places.filter(p=>(activeCat==='All'||p.cat===activeCat)&&(`${p.name} ${p.loc} ${p.cat}`).toLowerCase().includes(q));document.getElementById('placeCount').textContent=arr.length+' places';document.getElementById('placeGrid').innerHTML=arr.map(p=>`<article class="card"><div class="photo">${photo(p.img,p.name)}</div><div class="cardBody"><span class="badge">${p.cat}</span><h3>${p.name}</h3><div class="meta">📍 ${p.loc}</div><p>${p.desc}</p><div class="cardActions"><button class="btn small" onclick="openDetail(${p.id})">View Details</button><a class="btn small" target="_blank" href="${maps(p.name+' '+p.loc)}">Google Maps</a></div></div></article>`).join('')||'<div class="empty">No places found. Try another search.</div>'}
-function openDetail(id){let p=places[id];document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('explore')">← Back to Explore</button><div class="detailHero"><div class="photo">${photo(p.img,p.name)}</div><div class="panel"><span class="badge">${p.cat}</span><h2>${p.name}</h2><p class="meta">📍 ${p.loc}</p><p>${p.desc}</p><div class="cardActions"><a class="btn primary" target="_blank" href="${maps(p.name+' '+p.loc)}">📍 Open Google Maps</a><button class="btn" onclick="openModal('review','${p.name.replaceAll("'","\\'")}')">⭐ Review</button></div></div></div>`;showPage('placeDetail')}
+function openDetail(id){let p=places[id];document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('explore')">← Back to Explore</button><div class="detailHero"><div class="photo">${photo(p.img,p.name)}</div><div class="panel"><span class="badge">${p.cat}</span><h2>${p.name}</h2><p class="meta">📍 ${p.loc}</p><p>${p.desc}</p><div class="detailList"><div class="detailRow"><b>📜 History</b><span>${p.history}</span></div><div class="detailRow"><b>🧭 Visit</b><span>Check current access, timings and local conditions before travelling.</span></div></div><div class="cardActions"><a class="btn primary" target="_blank" href="${maps(p.name+' '+p.loc)}">📍 Open Google Maps</a><button class="btn" onclick="openModal('review','${p.name.replaceAll("'","\'")}')">⭐ Review</button></div></div></div>`;showPage('placeDetail')}
 function renderVenues(){
   let arr=venues.filter(v=>activeType==='All'||v.type===activeType);
   document.getElementById('venueGrid').innerHTML=arr.map(v=>`<article class="card" role="button" tabindex="0" onclick="openVenueDetail(${v.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVenueDetail(${v.id})}"><div class="photo">${photo(v.img,v.name,v.type==='Cafe'?'☕':v.type==='Restaurant'?'🍽️':'🏨')}</div><div class="cardBody"><span class="badge">${v.type}</span><h3>${v.name}</h3><div class="meta">📍 ${v.loc}</div><p>${v.desc}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><button class="btn small" onclick="event.stopPropagation();openVenueDetail(${v.id})">View Details</button><a class="btn small" target="_blank" rel="noopener" href="${maps(v.name+' '+v.loc)}" onclick="event.stopPropagation()">Google Maps</a><button class="btn small" onclick="event.stopPropagation();openVenueReview(${v.id})">Reviews</button>${(v.type==='Hotel'||v.type==='Resort')?`<button class="btn small" onclick="event.stopPropagation();openBookingById(${v.id})">🏨 Request Room</button>`:''}</div></div></article>`).join('')||'<div class="empty">No stays or food venues found.</div>'
@@ -232,40 +261,40 @@ function openModal(type,place=''){document.getElementById('modal').classList.add
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 function saveSubmission(e){e.preventDefault();let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');arr.unshift({name:mName.value,place:mPlace.value,text:mText.value,rating:mRating.value,date:new Date().toLocaleDateString()});localStorage.setItem('hdReviews',JSON.stringify(arr));e.target.reset();closeModal();renderReviews();toast('Saved ✓')}
 
-const challengeData=[
-  ["📍 Discover a lesser-known place","Open Haluvagilu (or another hidden Hassan destination) and view its details/maps."],
-  ["💡 Suggest a place","Open the suggestion form and submit a useful Hassan place recommendation."],
-  ["⭐ Review a place","Open the review form and submit a review for a Hassan destination or business."],
-  ["🗺️ Plan your trip","Open Trip Planner and create an itinerary for your Hassan visit."]
-];
-let challengeIndex=Math.min(Math.max(Number(localStorage.getItem('hdChallengeIndex')||0),0),challengeData.length-1);
-let challengeDone=[];
-try{challengeDone=JSON.parse(localStorage.getItem('hdChallengeDone')||'[]');if(!Array.isArray(challengeDone))challengeDone=[];}catch(e){challengeDone=[];}
-function renderChallenge(){
-  const d=challengeData[challengeIndex];
-  const title=document.getElementById('challengeTitle'),textEl=document.getElementById('challengeText'),score=document.getElementById('challengeScore'),progress=document.getElementById('challengeProgress'),action=document.getElementById('challengeAction');
-  if(!title||!textEl||!score||!progress)return;
-  title.textContent=d[0]; textEl.textContent=d[1]; score.textContent=challengeDone.length;
-  progress.textContent=`Challenge ${challengeIndex+1} of ${challengeData.length}`+(challengeDone.includes(challengeIndex)?" • ✓ Completed":"");
-  if(action)action.textContent=['📍 Open Challenge','💡 Open Suggestion Form','⭐ Open Review Form','🧳 Open Trip Planner'][challengeIndex];
+let activeChallenge=null;
+let challengeCompleted=0;
+try{challengeCompleted=Number(localStorage.getItem('hdChallengeCompleted')||0)||0;}catch(e){challengeCompleted=0;}
+function randomChallenge(){
+  const pool=places.filter(p=>p.name!=='Gendekatte Forest' || p.img);
+  const p=pool[Math.floor(Math.random()*pool.length)];
+  activeChallenge=p;
+  document.getElementById('challengeTitle').textContent='🎯 Visit: '+p.name;
+  document.getElementById('challengeText').textContent='Visit this place, explore it, and upload a photo you took there. Your upload completes this challenge.';
+  const info=document.getElementById('challengePlaceInfo');
+  info.style.display='block';
+  info.innerHTML=`<b>${p.name}</b><br>📍 ${p.loc}<br>${p.desc}<br><br><b>📜 History:</b> ${p.history}`;
+  document.getElementById('challengeOpen').disabled=false;
+  document.getElementById('challengeUploadBox').style.display='block';
+  document.getElementById('challengePhoto').value='';
+  document.getElementById('challengePreview').innerHTML='';
+  document.getElementById('challengeProgress').textContent='Active challenge: visit the place and upload your photo.';
 }
-function doChallengeAction(){
-  if(challengeIndex===0){
-    const id=places.findIndex(p=>p.name==='Haluvagilu');
-    if(id>=0){openDetail(id);completeChallenge();}
-    else{window.open(maps('Haluvagilu Hassan Karnataka'),'_blank');completeChallenge();}
-  }else if(challengeIndex===1){openModal('suggest');}
-  else if(challengeIndex===2){openModal('review');}
-  else{showPage('planner');}
+function openChallengePlace(){if(!activeChallenge)return;openDetail(activeChallenge.id);}
+function completePhotoChallenge(file){
+  if(!activeChallenge||!file)return;
+  if(!file.type.startsWith('image/')){toast('Please upload an image file.');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    document.getElementById('challengePreview').innerHTML=`<img src="${e.target.result}" alt="Uploaded challenge photo" style="width:100%;max-height:260px;object-fit:cover;border-radius:14px"><div class="notice" style="margin-top:10px"><b>🏆 Challenge completed!</b><br>Your photo was uploaded for <b>${activeChallenge.name}</b>.</div>`;
+    challengeCompleted+=1;localStorage.setItem('hdChallengeCompleted',String(challengeCompleted));
+    document.getElementById('challengeScore').textContent=challengeCompleted;
+    document.getElementById('challengeProgress').textContent='✓ Completed — tap “Give Me a Challenge” for another random place.';
+    toast('Challenge completed 🏆');
+  };
+  reader.readAsDataURL(file);
 }
-function completeChallenge(){
-  if(!challengeDone.includes(challengeIndex)){challengeDone.push(challengeIndex);localStorage.setItem('hdChallengeDone',JSON.stringify(challengeDone));toast('Challenge completed 🏆');}
-  else{toast('Already completed ✓');}
-  renderChallenge();
-}
-function nextChallenge(){challengeIndex=(challengeIndex+1)%challengeData.length;localStorage.setItem('hdChallengeIndex',String(challengeIndex));renderChallenge();}
-function resetChallenge(){challengeDone=[];challengeIndex=0;localStorage.setItem('hdChallengeDone','[]');localStorage.setItem('hdChallengeIndex','0');renderChallenge();toast('Challenge progress reset');}
-
+document.getElementById('challengePhoto').addEventListener('change',e=>completePhotoChallenge(e.target.files[0]));
+function renderChallenge(){const score=document.getElementById('challengeScore');if(score)score.textContent=challengeCompleted;}
 function renderReviews(){let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');document.getElementById('reviews').innerHTML=arr.length?arr.slice(0,12).map(r=>`<div class="reviewCard"><b>${r.place||'Hassan Discover'}</b> ${r.rating?`<span class="rating">★ ${r.rating}</span>`:''}<div class="meta">${r.name} • ${r.date}</div><p>${r.text}</p></div>`).join(''):'<div class="empty">No community submissions yet. Be the first one.</div>'}
 function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 document.querySelectorAll('.navlinks button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.getElementById('menu').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));document.getElementById('placeSearch').addEventListener('input',renderPlaces);document.querySelectorAll('#placeChips .chip').forEach(b=>b.addEventListener('click',()=>{activeCat=b.dataset.cat;document.querySelectorAll('#placeChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPlaces()}));document.querySelectorAll('#venueChips .chip').forEach(b=>b.addEventListener('click',()=>{activeType=b.dataset.type;document.querySelectorAll('#venueChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderVenues()}));document.getElementById('makePlan').addEventListener('click',suggestPlan);document.getElementById('addToPlan').addEventListener('click',addSelected);document.getElementById('modalForm').addEventListener('submit',saveSubmission);document.getElementById('navlinks').querySelector('[data-page="home"]').classList.add('active');renderPlaces();renderVenues();renderEntertainment();renderReviews();renderChallenge();
