@@ -67,11 +67,11 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
 
 <section class="page" id="stayfood"><div class="section"><div class="container"><div class="sectionHead"><div><div class="eyebrow">STAY • EAT • COFFEE</div><h2>Stays & Food</h2><p>Hotels, resorts, restaurants and cafés — local and familiar options. Open Google Maps for current photos, directions and live business information.</p></div></div>
 <div class="bookingBanner" style="background:#fff">
-  <div><div class="eyebrow">FOR HOTEL & HOMESTAY PARTNERS</div>
-    <h3>Turn local stays into bookable business</h3>
-    <p>Partners can receive booking leads, publish room types and prices, manage availability, and move toward online payment and instant confirmation. Revenue options can include a booking commission, partner subscription, or paid featured placement.</p>
+  <div><div class="eyebrow">BOOK LOCAL STAYS</div>
+    <h3>Check rooms and start a booking</h3>
+    <p>Choose a hotel or resort, enter your dates and guests, and see the demo room inventory available for those dates. Property partners can later connect their live availability and payment system.</p>
   </div>
-  <div class="bookingActions"><button class="btn" onclick="openPartner()">📋 List My Property</button></div>
+  <div class="bookingActions"><button class="btn primary" onclick="openBooking()">🏨 Start Booking a Room</button><button class="btn" onclick="openPartner()">📋 List My Property</button></div>
 </div>
 <div class="chips" id="venueChips"><button class="chip active" data-type="All">All</button><button class="chip" data-type="Hotel">Hotels</button><button class="chip" data-type="Resort">Resorts</button><button class="chip" data-type="Restaurant">Restaurants</button><button class="chip" data-type="Cafe">Local & Famous Cafés</button></div><div class="grid" id="venueGrid"></div></div></div></section>
 
@@ -97,10 +97,10 @@ h1{font-weight:800}.lead{max-width:620px}.heroActions .btn{padding:13px 17px;bor
 </div>
 </div><div style="height:20px"></div><div class="panel"><h3>Community reviews</h3><div id="reviews"></div></div></div></div></section>
 </main>
-<footer class="footer"><div class="container footerGrid"><div><h2>Hassan Discover</h2><p>Smart Local Tourism & Cultural Heritage Portal.<br><b>There’s more than you think.</b></p><p style="font-size:12px">© <span id="year"></span> Hassan Discover</p></div><div><b>Explore</b><a href="#" onclick="showPage('explore');return false">Places</a><a href="#" onclick="showPage('planner');return false">Trip Planner</a><a href="#" onclick="showPage('stayfood');return false">Stays & Food</a></div><div><b>Community</b><a href="#" onclick="showPage('entertainment');return false">Entertainment</a><a href="#" onclick="showPage('community');return false">Feedback & Challenge</a></div></div></footer><div class="container" style="padding-top:14px;font-size:12px;color:#aebdb3">Destination photography: Hassan District, Government of Karnataka photo galleries where available. <a href="https://hassan.nic.in/en/photo-gallery/" target="_blank" rel="noopener" style="display:inline;color:#dce8df">Photo source &amp; credits</a>.</div>
+<footer class="footer"><div class="container footerGrid"><div><h2>Hassan Discover</h2><p>Smart Local Tourism & Cultural Heritage Portal.<br><b>There’s more than you think.</b></p><p style="font-size:12px">© <span id="year"></span> Hassan Discover</p></div><div><b>Explore</b><a href="#" onclick="showPage('explore');return false">Places</a><a href="#" onclick="showPage('planner');return false">Trip Planner</a><a href="#" onclick="showPage('stayfood');return false">Stays & Food</a></div><div><b>Community</b><a href="#" onclick="showPage('entertainment');return false">Entertainment</a><a href="#" onclick="showPage('community');return false">Feedback & Challenge</a></div></div></footer>
 
 <div class="modal" id="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Share</h2><form class="form" id="modalForm"><input id="mName" placeholder="Name / nickname" required><input id="mPlace" placeholder="Place / business / destination"><textarea id="mText" placeholder="Your feedback or suggestion" required></textarea><select id="mRating"><option value="">Rating (optional)</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select><button class="btn primary">Submit</button></form></div></div><div class="toast" id="toast"></div>
-<div class="modal" id="bookingModal"><div class="modalBox wide"><button class="close" onclick="closeBooking()">×</button><h2>🏨 Request a Room</h2><p class="muted">Choose a property and send a booking enquiry. This GitHub version stores the request on this device; live availability/payment needs a connected hotel or booking backend.</p><form class="form" id="bookingForm"><div class="formGrid"><div><label>Property</label><select id="bookProperty" required></select></div><div><label>Rooms</label><input id="bookRooms" type="number" min="1" max="10" value="1" required></div><div><label>Check-in</label><input id="bookIn" type="date" required></div><div><label>Check-out</label><input id="bookOut" type="date" required></div><div><label>Adults</label><input id="bookAdults" type="number" min="1" max="20" value="2" required></div><div><label>Phone</label><input id="bookPhone" type="tel" placeholder="Phone number" required></div><div><label>Your name</label><input id="bookName" placeholder="Full name" required></div><div><label>Email</label><input id="bookEmail" type="email" placeholder="you@example.com"></div><div class="full"><label>Special request</label><textarea id="bookNote" placeholder="Room preference, arrival time, etc."></textarea></div></div><button class="btn primary" type="submit">Send Booking Enquiry</button></form><div id="bookingResult" style="display:none;margin-top:15px"></div></div></div>
+<div class="modal" id="bookingModal"><div class="modalBox wide"><button class="close" onclick="closeBooking()">×</button><h2>🏨 Book a Room</h2><p class="muted">Choose a hotel or resort below. Available room types are shown immediately; add your dates and guests to check the demo inventory.</p><form class="form" id="bookingForm"><div class="formGrid"><div><label>Hotel / Resort</label><select id="bookProperty" onchange="renderRoomOptions(this.value)" required></select></div><div><label>Rooms needed</label><input id="bookRooms" type="number" min="1" max="10" value="1" required></div><div><label>Check-in</label><input id="bookIn" type="date" required></div><div><label>Check-out</label><input id="bookOut" type="date" required></div><div><label>Adults</label><input id="bookAdults" type="number" min="1" max="20" value="2" required></div><div><label>Children</label><input id="bookChildren" type="number" min="0" max="10" value="0"></div><div class="full"><button class="btn primary" type="button" onclick="checkRoomAvailability()">🔎 Check Available Rooms</button></div></div></form><div id="roomResults" style="margin-top:15px"></div><div id="bookingResult" style="display:none;margin-top:15px"></div></div></div>
 <div class="modal" id="partnerModal"><div class="modalBox wide"><button class="close" onclick="closePartner()">×</button><h2>📋 List My Property</h2><p class="muted">For hotels, resorts and homestays that want to receive booking leads through Hassan Discover.</p><form class="form" id="partnerForm"><div class="formGrid"><div><label>Business / property name</label><input id="partnerName" required></div><div><label>Contact person</label><input id="partnerContact" required></div><div><label>Phone</label><input id="partnerPhone" type="tel" required></div><div><label>Email</label><input id="partnerEmail" type="email"></div><div class="full"><label>Property type</label><select id="partnerType"><option>Hotel</option><option>Resort</option><option>Homestay</option><option>Restaurant</option><option>Cafe</option></select></div></div><button class="btn primary" type="submit">Submit Partner Interest</button></form></div></div>
 
 <script>
@@ -198,7 +198,7 @@ const maps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURICompon
 function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));document.getElementById('navlinks').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});if(id==='explore')renderPlaces();if(id==='stayfood')renderVenues();if(id==='entertainment')renderEntertainment();if(id==='community'){renderReviews();renderChallenge()}}
 function photo(src,name,emoji='📍'){if(!src)return `<div class="fallback">${emoji}<br>${name}<br><small>Verified photo not added yet</small></div>`;return `<img src="${src}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<div class=\'fallback\'>${emoji}<br>${name}<br><small>Photo unavailable — open Maps for current photos</small></div>')">`}
 function renderPlaces(){let q=(document.getElementById('placeSearch').value||'').toLowerCase();let arr=places.filter(p=>(activeCat==='All'||p.cat===activeCat)&&(`${p.name} ${p.loc} ${p.cat}`).toLowerCase().includes(q));document.getElementById('placeCount').textContent=arr.length+' places';document.getElementById('placeGrid').innerHTML=arr.map(p=>`<article class="card"><div class="photo">${photo(p.img,p.name)}</div><div class="cardBody"><span class="badge">${p.cat}</span><h3>${p.name}</h3><div class="meta">📍 ${p.loc}</div><p>${p.desc}</p><div class="cardActions"><button class="btn small" onclick="openDetail(${p.id})">View Details</button><a class="btn small" target="_blank" href="${maps(p.name+' '+p.loc)}">Google Maps</a></div></div></article>`).join('')||'<div class="empty">No places found. Try another search.</div>'}
-function openDetail(id){let p=places[id];document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('explore')">← Back to Explore</button><div class="detailHero"><div class="photo">${photo(p.img,p.name)}</div><div class="panel"><span class="badge">${p.cat}</span><h2>${p.name}</h2><p class="meta">📍 ${p.loc}</p><p>${p.desc}</p><div class="notice">📸 Photo rule: Hassan Discover does not replace a place with a random landmark. If a verified image is unavailable, the page uses a placeholder instead.</div><div class="cardActions"><a class="btn primary" target="_blank" href="${maps(p.name+' '+p.loc)}">📍 Open Google Maps</a><button class="btn" onclick="openModal('review','${p.name.replaceAll("'","\\'")}')">⭐ Review</button></div></div></div>`;showPage('placeDetail')}
+function openDetail(id){let p=places[id];document.getElementById('detailContent').innerHTML=`<button class="btn back" onclick="showPage('explore')">← Back to Explore</button><div class="detailHero"><div class="photo">${photo(p.img,p.name)}</div><div class="panel"><span class="badge">${p.cat}</span><h2>${p.name}</h2><p class="meta">📍 ${p.loc}</p><p>${p.desc}</p><div class="cardActions"><a class="btn primary" target="_blank" href="${maps(p.name+' '+p.loc)}">📍 Open Google Maps</a><button class="btn" onclick="openModal('review','${p.name.replaceAll("'","\\'")}')">⭐ Review</button></div></div></div>`;showPage('placeDetail')}
 function renderVenues(){
   let arr=venues.filter(v=>activeType==='All'||v.type===activeType);
   document.getElementById('venueGrid').innerHTML=arr.map(v=>`<article class="card" role="button" tabindex="0" onclick="openVenueDetail(${v.id})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVenueDetail(${v.id})}"><div class="photo">${photo(v.img,v.name,v.type==='Cafe'?'☕':v.type==='Restaurant'?'🍽️':'🏨')}</div><div class="cardBody"><span class="badge">${v.type}</span><h3>${v.name}</h3><div class="meta">📍 ${v.loc}</div><p>${v.desc}</p><div class="meta">⭐ Rating: check current listing</div><div class="cardActions"><button class="btn small" onclick="event.stopPropagation();openVenueDetail(${v.id})">View Details</button><a class="btn small" target="_blank" rel="noopener" href="${maps(v.name+' '+v.loc)}" onclick="event.stopPropagation()">Google Maps</a><button class="btn small" onclick="event.stopPropagation();openVenueReview(${v.id})">Reviews</button>${(v.type==='Hotel'||v.type==='Resort')?`<button class="btn small" onclick="event.stopPropagation();openBookingById(${v.id})">🏨 Request Room</button>`:''}</div></div></article>`).join('')||'<div class="empty">No stays or food venues found.</div>'
@@ -233,89 +233,132 @@ function closeModal(){document.getElementById('modal').classList.remove('open')}
 function saveSubmission(e){e.preventDefault();let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');arr.unshift({name:mName.value,place:mPlace.value,text:mText.value,rating:mRating.value,date:new Date().toLocaleDateString()});localStorage.setItem('hdReviews',JSON.stringify(arr));e.target.reset();closeModal();renderReviews();toast('Saved ✓')}
 
 const challengeData=[
-  ["📍 Discover a lesser-known place","Visit one hidden or lesser-known Hassan destination and open its Google Maps location."],
-  ["📸 Share a place","Share a useful description or recommendation for a Hassan destination."],
-  ["⭐ Review a place","Leave a review for a place through the Community section."],
-  ["🗺️ Plan your trip","Create an itinerary using the Trip Planner."]
+  ["📍 Discover a lesser-known place","Open Haluvagilu (or another hidden Hassan destination) and view its details/maps."],
+  ["💡 Suggest a place","Open the suggestion form and submit a useful Hassan place recommendation."],
+  ["⭐ Review a place","Open the review form and submit a review for a Hassan destination or business."],
+  ["🗺️ Plan your trip","Open Trip Planner and create an itinerary for your Hassan visit."]
 ];
-let challengeIndex=Number(localStorage.getItem('hdChallengeIndex')||0);
-let challengeDone=JSON.parse(localStorage.getItem('hdChallengeDone')||'[]');
+let challengeIndex=Math.min(Math.max(Number(localStorage.getItem('hdChallengeIndex')||0),0),challengeData.length-1);
+let challengeDone=[];
+try{challengeDone=JSON.parse(localStorage.getItem('hdChallengeDone')||'[]');if(!Array.isArray(challengeDone))challengeDone=[];}catch(e){challengeDone=[];}
 function renderChallenge(){
   const d=challengeData[challengeIndex];
-  const title=document.getElementById('challengeTitle');
-  const textEl=document.getElementById('challengeText');
-  const score=document.getElementById('challengeScore');
-  const progress=document.getElementById('challengeProgress');
+  const title=document.getElementById('challengeTitle'),textEl=document.getElementById('challengeText'),score=document.getElementById('challengeScore'),progress=document.getElementById('challengeProgress'),action=document.getElementById('challengeAction');
   if(!title||!textEl||!score||!progress)return;
-  title.textContent=d[0];
-  textEl.textContent=d[1];
-  score.textContent=challengeDone.length;
-  progress.textContent=`Challenge ${challengeIndex+1} of ${challengeData.length}`+
-    (challengeDone.includes(challengeIndex)?" • ✓ Completed":"");
-  const action=document.getElementById('challengeAction');
-  if(action){action.textContent=['📍 Open a hidden place','💡 Suggest a place','⭐ Write a review','🧳 Open Trip Planner'][challengeIndex];}
+  title.textContent=d[0]; textEl.textContent=d[1]; score.textContent=challengeDone.length;
+  progress.textContent=`Challenge ${challengeIndex+1} of ${challengeData.length}`+(challengeDone.includes(challengeIndex)?" • ✓ Completed":"");
+  if(action)action.textContent=['📍 Open Challenge','💡 Open Suggestion Form','⭐ Open Review Form','🧳 Open Trip Planner'][challengeIndex];
 }
 function doChallengeAction(){
-  if(challengeIndex===0){window.open(maps('Haluvagilu Hassan Karnataka'),'_blank','noopener');}
-  else if(challengeIndex===1){openModal('suggest');}
+  if(challengeIndex===0){
+    const id=places.findIndex(p=>p.name==='Haluvagilu');
+    if(id>=0){openDetail(id);completeChallenge();}
+    else{window.open(maps('Haluvagilu Hassan Karnataka'),'_blank');completeChallenge();}
+  }else if(challengeIndex===1){openModal('suggest');}
   else if(challengeIndex===2){openModal('review');}
-  else {showPage('planner');}
+  else{showPage('planner');}
 }
 function completeChallenge(){
-  if(!challengeDone.includes(challengeIndex)){
-    challengeDone.push(challengeIndex);
-    localStorage.setItem('hdChallengeDone',JSON.stringify(challengeDone));
-    toast('Challenge completed 🏆');
-  }else{
-    toast('Already completed ✓');
-  }
+  if(!challengeDone.includes(challengeIndex)){challengeDone.push(challengeIndex);localStorage.setItem('hdChallengeDone',JSON.stringify(challengeDone));toast('Challenge completed 🏆');}
+  else{toast('Already completed ✓');}
   renderChallenge();
 }
-function nextChallenge(){
-  challengeIndex=(challengeIndex+1)%challengeData.length;
-  localStorage.setItem('hdChallengeIndex',challengeIndex);
-  renderChallenge();
-}
-function resetChallenge(){
-  challengeDone=[];
-  challengeIndex=0;
-  localStorage.setItem('hdChallengeDone','[]');
-  localStorage.setItem('hdChallengeIndex','0');
-  renderChallenge();
-  toast('Challenge progress reset');
-}
+function nextChallenge(){challengeIndex=(challengeIndex+1)%challengeData.length;localStorage.setItem('hdChallengeIndex',String(challengeIndex));renderChallenge();}
+function resetChallenge(){challengeDone=[];challengeIndex=0;localStorage.setItem('hdChallengeDone','[]');localStorage.setItem('hdChallengeIndex','0');renderChallenge();toast('Challenge progress reset');}
 
 function renderReviews(){let arr=JSON.parse(localStorage.getItem('hdReviews')||'[]');document.getElementById('reviews').innerHTML=arr.length?arr.slice(0,12).map(r=>`<div class="reviewCard"><b>${r.place||'Hassan Discover'}</b> ${r.rating?`<span class="rating">★ ${r.rating}</span>`:''}<div class="meta">${r.name} • ${r.date}</div><p>${r.text}</p></div>`).join(''):'<div class="empty">No community submissions yet. Be the first one.</div>'}
 function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 document.querySelectorAll('.navlinks button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.getElementById('menu').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));document.getElementById('placeSearch').addEventListener('input',renderPlaces);document.querySelectorAll('#placeChips .chip').forEach(b=>b.addEventListener('click',()=>{activeCat=b.dataset.cat;document.querySelectorAll('#placeChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPlaces()}));document.querySelectorAll('#venueChips .chip').forEach(b=>b.addEventListener('click',()=>{activeType=b.dataset.type;document.querySelectorAll('#venueChips .chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderVenues()}));document.getElementById('makePlan').addEventListener('click',suggestPlan);document.getElementById('addToPlan').addEventListener('click',addSelected);document.getElementById('modalForm').addEventListener('submit',saveSubmission);document.getElementById('navlinks').querySelector('[data-page="home"]').classList.add('active');renderPlaces();renderVenues();renderEntertainment();renderReviews();renderChallenge();
 
+const roomInventory={
+  'Hoysala Village Resort': [
+    {name:'Deluxe Heritage Room',price:4200,available:4,features:'2 guests • King bed • Breakfast'},
+    {name:'Family Suite',price:6800,available:2,features:'4 guests • 2 beds • Breakfast'},
+    {name:'Garden Cottage',price:5200,available:3,features:'3 guests • Garden view • Breakfast'}
+  ],
+  'Hotel Mayura International': [
+    {name:'Standard Room',price:2200,available:6,features:'2 guests • Queen bed'},
+    {name:'Deluxe Room',price:3000,available:4,features:'3 guests • King bed'},
+    {name:'Family Room',price:3800,available:2,features:'4 guests • 2 beds'}
+  ],
+  'Hotel Jewel Rock': [
+    {name:'Executive Room',price:2800,available:5,features:'2 guests • King bed'},
+    {name:'Family Room',price:3600,available:2,features:'4 guests • 2 beds'}
+  ],
+  'Palguni Residency': [
+    {name:'Standard Room',price:1900,available:5,features:'2 guests • Queen bed'},
+    {name:'Deluxe Room',price:2500,available:3,features:'3 guests • King bed'}
+  ],
+  'Hotel Varun Mansion': [
+    {name:'Classic Room',price:2400,available:4,features:'2 guests • Queen bed'},
+    {name:'Premium Room',price:3200,available:3,features:'3 guests • King bed'}
+  ],
+  'Hotel Suvarna Regency': [
+    {name:'Standard Room',price:2100,available:5,features:'2 guests • Queen bed'},
+    {name:'Deluxe Room',price:2900,available:3,features:'3 guests • King bed'}
+  ],
+  'New Suvarna Resorts': [
+    {name:'Resort Room',price:3600,available:4,features:'2 guests • Resort view'},
+    {name:'Family Cottage',price:5900,available:2,features:'4 guests • Private cottage'}
+  ],
+  'Mountain Peak Resort': [
+    {name:'Valley View Room',price:4500,available:3,features:'2 guests • Valley view'},
+    {name:'Family Cottage',price:6500,available:2,features:'4 guests • Cottage stay'}
+  ],
+  'Nyritvilla Homestay': [
+    {name:'Estate Room',price:3800,available:3,features:'2 guests • Estate stay'},
+    {name:'Family Homestay',price:5600,available:2,features:'4 guests • Family stay'}
+  ]
+};
+function renderRoomOptions(property){
+  const result=document.getElementById('roomResults');
+  if(!result)return;
+  const inventory=roomInventory[property]||[];
+  if(!inventory.length){result.innerHTML='<div class="empty">No demo room inventory has been added for this property yet.</div>';return;}
+  result.innerHTML=`<div class="notice"><b>🏨 Available room types</b><br>${property}<br><small>Demo availability shown for the website prototype. Live hotel availability will require a connected hotel system.</small></div><div class="grid" style="margin-top:15px">${inventory.map((r,i)=>`<div class="panel"><span class="badge">${r.available} available</span><h3>${r.name}</h3><p class="muted">${r.features}</p><p><b>₹${r.price.toLocaleString('en-IN')}</b> / night</p><button class="btn primary" type="button" onclick="selectRoom(${i})">Select Room</button></div>`).join('')}</div>`;
+  window.currentRoomOptions=inventory;
+}
 function openBooking(property=''){
   const modal=document.getElementById('bookingModal');
   const select=document.getElementById('bookProperty');
-  select.innerHTML=venues.filter(v=>v.type==='Hotel'||v.type==='Resort').map(v=>`<option>${v.name}</option>`).join('');
-  if(property) select.value=property;
+  const stays=venues.filter(v=>v.type==='Hotel'||v.type==='Resort');
+  select.innerHTML=stays.map(v=>`<option value="${v.name}">${v.name}</option>`).join('');
+  if(property && stays.some(v=>v.name===property))select.value=property;
   document.getElementById('bookingResult').style.display='none';
   modal.classList.add('open');
+  renderRoomOptions(select.value);
 }
 function closeBooking(){document.getElementById('bookingModal').classList.remove('open')}
-function openPartner(){document.getElementById('partnerModal').classList.add('open')}
-function closePartner(){document.getElementById('partnerModal').classList.remove('open')}
-document.getElementById('bookingForm')?.addEventListener('submit',function(e){
-  e.preventDefault();
-  const req={
-    property:document.getElementById('bookProperty').value,
-    checkIn:document.getElementById('bookIn').value,checkOut:document.getElementById('bookOut').value,
-    adults:document.getElementById('bookAdults').value,rooms:document.getElementById('bookRooms').value,
-    name:document.getElementById('bookName').value,phone:document.getElementById('bookPhone').value,
-    email:document.getElementById('bookEmail').value,note:document.getElementById('bookNote').value,
-    createdAt:new Date().toISOString()
-  };
-  if(!req.checkIn||!req.checkOut||new Date(req.checkOut)<=new Date(req.checkIn)){alert('Please choose a valid check-in and check-out date.');return}
+function checkRoomAvailability(){
+  const property=document.getElementById('bookProperty').value;
+  const checkIn=document.getElementById('bookIn').value,checkOut=document.getElementById('bookOut').value;
+  const rooms=Number(document.getElementById('bookRooms').value||1),adults=Number(document.getElementById('bookAdults').value||1),children=Number(document.getElementById('bookChildren').value||0);
+  if(!checkIn||!checkOut){alert('Please choose check-in and check-out dates.');return;}
+  if(new Date(checkOut)<=new Date(checkIn)){alert('Check-out must be after check-in.');return;}
+  const nights=Math.ceil((new Date(checkOut)-new Date(checkIn))/86400000);
+  const inventory=roomInventory[property]||[];
+  const eligible=inventory.filter(r=>r.available>=rooms);
+  const result=document.getElementById('roomResults');
+  if(!eligible.length){result.innerHTML='<div class="empty">No room type has enough demo inventory for the number of rooms selected. Try another property or fewer rooms.</div>';window.currentRoomOptions=[];return;}
+  window.currentRoomOptions=eligible;window.currentBookingNights=nights;
+  result.innerHTML=`<div class="notice"><b>✓ ${eligible.length} room type(s) available</b><br>${property} • ${nights} night(s) • ${adults} adult(s)${children?` • ${children} child(ren)`:''}</div><div class="grid" style="margin-top:15px">${eligible.map((r,i)=>`<div class="panel"><span class="badge">Available</span><h3>${r.name}</h3><p class="muted">${r.features}</p><p><b>₹${r.price.toLocaleString('en-IN')}</b> / night</p><p class="meta">${r.available} room(s) in demo inventory</p><button class="btn primary" type="button" onclick="selectRoom(${i})">Select Room</button></div>`).join('')}</div>`;
+}
+function selectRoom(index){
+  const room=window.currentRoomOptions?.[index];if(!room)return;
+  const checkIn=document.getElementById('bookIn').value,checkOut=document.getElementById('bookOut').value;
+  if(!checkIn||!checkOut||new Date(checkOut)<=new Date(checkIn)){alert('Please enter valid check-in and check-out dates first.');return;}
+  const property=document.getElementById('bookProperty').value;
+  const nights=window.currentBookingNights||Math.ceil((new Date(checkOut)-new Date(checkIn))/86400000);
+  const req={property,roomType:room.name,pricePerNight:room.price,nights,rooms:Number(document.getElementById('bookRooms').value||1),adults:Number(document.getElementById('bookAdults').value||1),children:Number(document.getElementById('bookChildren').value||0),checkIn,checkOut};
   const ref='HD'+Date.now().toString().slice(-8);
   localStorage.setItem('hassanBooking_'+ref,JSON.stringify(req));
   document.getElementById('bookingResult').style.display='block';
-  document.getElementById('bookingResult').innerHTML=`<div class="notice"><b>Booking enquiry created: ${ref}</b><br>We have captured the stay details on this device. A connected partner booking system is required to send the request to the property and confirm availability/payment.</div>`;
-});
+  document.getElementById('bookingResult').innerHTML=`<div class="notice"><b>Room selected ✓ Reference: ${ref}</b><br>${room.name} at ${property}<br>Total demo price: <b>₹${(room.price*nights*req.rooms).toLocaleString('en-IN')}</b><br><small>This prototype records the booking request on this device. Live inventory, payment and instant confirmation require a connected hotel backend.</small></div>`;
+}
+
+function openPartner(){document.getElementById('partnerModal').classList.add('open')}
+function closePartner(){document.getElementById('partnerModal').classList.remove('open')}
+
 document.getElementById('partnerForm')?.addEventListener('submit',function(e){
   e.preventDefault();
   const ref='PARTNER'+Date.now().toString().slice(-6);
